@@ -68,5 +68,19 @@ namespace s17_l3.Controllers
             _context.SaveChanges();
             return RedirectToAction("Details", new { id = scarpa.ID });
         }
+
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            var scarpa = _context.GetById(id.Value);
+            return View(scarpa);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            _context.hardDelete(id);
+            return RedirectToAction("Index");
+        }
     }
 }

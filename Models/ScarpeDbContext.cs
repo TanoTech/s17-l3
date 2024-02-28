@@ -1,3 +1,4 @@
+using System.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace s17_l3.Models
@@ -14,6 +15,7 @@ namespace s17_l3.Models
         {
             return Scarpe.ToList();
         }
+
         public Scarpa? GetById(int id)
         {
             for (int i = 0; i < Scarpe.Count(); i++)
@@ -26,7 +28,7 @@ namespace s17_l3.Models
             }
             return null;
         }
-        
+
         public Scarpa? Modify(Scarpa scarpa)
         {
             for (int i = 0; i < Scarpe.Count(); i++)
@@ -39,6 +41,21 @@ namespace s17_l3.Models
                     existingScarpa.Descrizione = scarpa.Descrizione;
                     SaveChanges();
                     return existingScarpa;
+                }
+            }
+            return null;
+        }
+
+        public Scarpa? hardDelete(int? idCancella)
+        {
+            for (int i = 0; i < Scarpe.Count(); i++)
+            {
+                var scarpa = Scarpe.ElementAt(i);
+                if (scarpa.ID == idCancella)
+                {
+                    Scarpe.Remove(scarpa);
+                    SaveChanges();
+                    return scarpa;
                 }
             }
             return null;

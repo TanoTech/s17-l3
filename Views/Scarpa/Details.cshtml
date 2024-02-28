@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Details page";
+}
+
+<div>
+    <ul>
+        <li>Nome: @Model.Nome</li>
+        <li>Prezzo: @(Model.Prezzo)€</li>
+        <li>Descrizione: @Model.Descrizione</li>
+    </ul>
+    <a class="btn btn-primary" asp-controller="Scarpa" asp-action="Index">Vai alla lista</a>
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.ID">Continua a modificare</a>
+</div>
